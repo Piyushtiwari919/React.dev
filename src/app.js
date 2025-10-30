@@ -4,21 +4,70 @@ import logo from "url:../public/eatables.png";
 import Header from "./components/Header.js";
 import Body from "./components/Body.js";
 import Footer from "./components/Footer.js";
-
-
+import About from "./components/About.js";
+import Contact from "./components/Contact.js";
+import Error from "./components/Error.js";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import RestaurantMenu from "./components/RestaurantMenu.js";
 
 const AppLayout = () => {
-  console.log(<Body/>);
-  
+  // console.log(<Body/>);
+
   return (
     <div className="app">
-      <Header logo={logo}/>
-      <Body />
-      <Footer/>
+      <Header logo={logo} />
+      <Outlet />
+      <Footer />
     </div>
   );
 };
 
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    children: [
+      {
+        path:"/",
+        element:<Body/>
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/restaurants/:resId",
+        element: <RestaurantMenu />,
+      },
+    ],
+    errorElement: <Error/>,
+  },
+]);
+
+/*
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    errorElement:<Error/>
+  },
+  {
+    path: "/about",
+    element: <About />,
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
+  },
+]);
+*/
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<AppLayout />);
+root.render(
+  <RouterProvider router={appRouter} />
+);
