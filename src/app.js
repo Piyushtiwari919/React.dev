@@ -22,6 +22,7 @@ const AppLayout = () => {
   );
 };
 
+
 const appRouter = createBrowserRouter([
   {
     path: "/",

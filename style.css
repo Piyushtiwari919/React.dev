@@ -163,6 +163,26 @@ body {
 
 }
 
+.res-links{
+    text-decoration: none;
+    color:#000;
+}
+
+/* aboutpage */
+
+.about-component{
+    min-height: 52.7dvh;
+}
+
+.user-card{
+    min-width: 240px;
+    margin:1em 1em 1em 0;
+    border:1px solid pink;
+    box-shadow: 2px 3px 2px pink;
+    padding: 0.5em;
+}
+
+
 .footer{
     display: flex;
     /* position: absolute; */

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 // import { Res_List } from "../utils/mockData.js";
 import RestaurantCard from "./RestaurantCard.js";
+import { Link } from "react-router-dom";
 import SearchBox from "./SearchBox.js";
 import Shimmer from "./Shimmer.js";
 
@@ -20,7 +21,7 @@ const Body = () => {
       // console.log(data);
       const text = await data.text();
       console.log(text);
-      
+
       const json = JSON.parse(text);
       console.log(json);
       const finalRes =
@@ -33,8 +34,7 @@ const Body = () => {
       setFilteredRestaurant(finalRes);
 
       // setListOfRestaurant(json); : not getting the data as per the requirement of the page
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
     }
   };
@@ -55,17 +55,27 @@ const Body = () => {
       <div className="search-container">
         {/* <SearchBox /> */}
         <div className="search-box">
-          <input type="text" placeholder="What are you looking for?" value={searchText} onChange={(e)=>{
-            setSearchText(e.target.value);
-          }} name="dishes-search"/>
-          <button onClick={()=>{
-            const filteredData = listOfRestaurants.filter((res)=>{
-              return res.info.name.toLowerCase().includes(searchText.toLowerCase())
-            });
-            // console.log(filteredData);
-            
-            setFilteredRestaurant(filteredData);
-          }}>
+          <input
+            type="text"
+            placeholder="What are you looking for?"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+            name="dishes-search"
+          />
+          <button
+            onClick={() => {
+              const filteredData = listOfRestaurants.filter((res) => {
+                return res.info.name
+                  .toLowerCase()
+                  .includes(searchText.toLowerCase());
+              });
+              // console.log(filteredData);
+
+              setFilteredRestaurant(filteredData);
+            }}
+          >
             <i className="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
@@ -86,7 +96,15 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredRestaurant.map((resD) => {
-          return <RestaurantCard key={resD.info.id} resData={resD.info} />;
+          return (
+            <Link
+              to={"/restaurants/" + resD.info.id}
+              key={resD.info.id}
+              className="res-links"
+            >
+              <RestaurantCard resData={resD.info} />
+            </Link>
+          );
         })}
       </div>
     </div>
