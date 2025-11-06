@@ -12,6 +12,8 @@ const RestaurantMenu = () => {
     fetchMenu();
   }, []);
 
+  //Api Issue here::
+
   const fetchMenu = async () => {
     try {
       const data = await fetch(MENU_API_URL+resId);
@@ -27,7 +29,7 @@ const RestaurantMenu = () => {
   if (resInfo === null) {
     return <Shimmer />;
   }
-
+  // Refactor the return with api data
   return (
     <div className="menu">
       <h1>Name of Res</h1>
