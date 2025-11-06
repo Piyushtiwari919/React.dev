@@ -29,7 +29,7 @@ const RestaurantMenu = () => {
   if (resInfo === null) {
     return <Shimmer />;
   }
-  // Refactor the return with api data
+  //Refactor the return with api data
   return (
     <div className="menu">
       <h1>Name of Res</h1>
