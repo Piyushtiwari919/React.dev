@@ -4,6 +4,7 @@ import RestaurantCard from "./RestaurantCard.js";
 import { Link } from "react-router-dom";
 import SearchBox from "./SearchBox.js";
 import Shimmer from "./Shimmer.js";
+import useOnlineStatus from "../utils/useOnlineStatus.js";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurant] = useState([]);
@@ -39,12 +40,24 @@ const Body = () => {
     }
   };
 
+  const onlineStatus = useOnlineStatus();
+
+  if(onlineStatus === false){
+    return(
+      <div>
+        <h1>Seems You are Offline.</h1>
+        <h3>Please Check your internet connection!!</h3>
+      </div>
+    )
+  }
+  /*
   //Conditional Rendering
   // if(listOfRestaurants.length === 0){
   //   return(
   //     <Shimmer/>
   //   )
   // }
+  */
 
   console.log("abc first");
 

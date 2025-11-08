@@ -3,5 +3,4 @@
 /.parcel-cache
 data.txt
 *.package-lock.json
-/src/components/User.js
 /src/components/UserClass.js

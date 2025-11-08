@@ -1,4 +1,4 @@
-// import User from "./User.js";
+import User from "./User.js";
 // import UserClass from "./UserClass.js";
 // import { Component } from "react";
 
@@ -30,7 +30,7 @@ const About = () => {
   return (
     <div className="about-component">
       <h1>About Us</h1>
-      {/* <User /> */}
+      <User/>
       {/* <UserClass name="Pawan T." location={"Ghaziabad"} /> */}
     </div>
   );
