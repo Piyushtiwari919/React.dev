@@ -25,10 +25,13 @@ const Body = () => {
 
       const json = JSON.parse(text);
       console.log(json);
+      const cardObj = json?.data?.cards.find((item) =>
+        item.card?.card.id.includes("top_brands_for_you")
+        // item.card?.card.id.includes("restaurant_grid_listing")
+      );
+      console.log(cardObj);
       const finalRes =
-        json.data?.cards[4]["card"]["card"]["gridElements"]["infoWithStyle"][
-          "restaurants"
-        ]; //the data is changing how can i fix it?
+        cardObj?.card?.card?.gridElements?.infoWithStyle?.restaurants;
       console.log(finalRes);
 
       setListOfRestaurant(finalRes);
@@ -42,13 +45,13 @@ const Body = () => {
 
   const onlineStatus = useOnlineStatus();
 
-  if(onlineStatus === false){
-    return(
+  if (onlineStatus === false) {
+    return (
       <div>
         <h1>Seems You are Offline.</h1>
         <h3>Please Check your internet connection!!</h3>
       </div>
-    )
+    );
   }
   /*
   //Conditional Rendering
@@ -64,7 +67,7 @@ const Body = () => {
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
+    <div className="">
       <div className="search-container">
         {/* <SearchBox /> */}
         <div className="search-box">
