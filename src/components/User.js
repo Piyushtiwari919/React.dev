@@ -24,10 +24,10 @@ const User = ()=>{
         setUser(json);
     }
     return(
-        <div className="user-card">
-            <h2>Name : {user?.name}</h2>
-            <h3>Location : {user?.location}</h3>
-            <p>Bio : {user?.bio}</p>
+        <div className="user-card border-fuchsia-500 border-2 shadow-fuchsia-700 shadow-md mt-4">
+            <h2 className="text-shadow-orange-600 shadow-2xl my-1">Name : {user?.name}</h2>
+            <h3 className="my-1">Location : {user?.location}</h3>
+            <p className="my-1">Bio : {user?.bio}</p>
         </div>
     )
 }
