@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import logo from "url:../public/eatables.png";
 import Header from "./components/Header.js";
@@ -9,19 +9,31 @@ import Contact from "./components/Contact.js";
 import Error from "./components/Error.js";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu.js";
+import UserContext from "../src/utils/UserContext.js";
 // import Grocery from "./components/Grocery.js";
 
 const Grocery = lazy(() => import("./components/Grocery.js"));
 
 const AppLayout = () => {
   // console.log(<Body/>);
-
+  const [userName, setUserName] = useState("");
+  useEffect(()=>{
+    const data = {
+      name:"Piyush T."
+    }
+    setUserName(data.name);
+  },[])
   return (
-    <div className="app">
-      <Header logo={logo} />
-      <Outlet />
-      <Footer />
-    </div>
+
+    <UserContext.Provider value={{loggedInUser:userName, setUserName}}>
+      <div className="app">
+        <UserContext.Provider value={{loggedInUser:"Elon Musk"}}>
+          <Header logo={logo} />
+        </UserContext.Provider>
+        <Outlet />
+        <Footer />
+      </div>
+    </UserContext.Provider>
   );
 };
 
