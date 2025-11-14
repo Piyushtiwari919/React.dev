@@ -2,35 +2,38 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router";
 import useRestaurantMenu from "../utils/useRestaurantMenu.js";
+import RestaurantCategory from "./RestaurantCategory.js";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
   const {resId} = useParams();
+  const [showIndex, setShowIndex] = useState(null);
 
   //* Custom Hook
-  const resInfo = useRestaurantMenu(resId);
-  console.log(resInfo);
+  const {resInfo,resName} = useRestaurantMenu(resId);
+  // console.log(resInfo,resName);
 
   if (resInfo === null) {
-    return <Shimmer />;
+    return <Shimmer/>;
   }
   return (
-    <div className="menu-res">
-      <h1>{resInfo?.name}</h1>
-      <img
-        src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=880"
-        height={200}
-      />
-      <p>{resInfo?.cuisines.join(", ")}</p>
-      <p>Rating : {resInfo?.avgRating}</p>
-      <h2>Menu</h2>
-      <ul>
-        <li>Baby Corn</li>
-        <li>Panner Bhurji</li>
-        <li>Rajma</li>
-        <li>Pulao-Chole</li>
-      </ul>
+    <div className="text-center my-4">
+      <h1 className="text-2xl font-bold my-2">{resName}</h1>
+      {/*Categories Accordion*/}
+      {resInfo.map((category, index)=>{
+        return(
+          <RestaurantCategory 
+            key={category?.card.card.title}
+            data={category?.card?.card}
+            showItems={index === showIndex ? true:false}
+            setShowIndex={() => setShowIndex(index)}
+            setHideIndex={()=> setShowIndex(null)}
+          />
+        )
+      })}
     </div>
   );
 };
 
 export default RestaurantMenu;
+
