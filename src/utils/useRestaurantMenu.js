@@ -5,13 +5,15 @@ import { resMenuData } from "./menuData.js";
 
 const useRestaurantMenu = (resId) => {
   const [resInfo, setResInfo] = useState(null);
+  const [resName, setResName] = useState("");
   useEffect(() => {
     fetchMenu();
   }, []);
 
   //*Api Issue here::
-
+  
   const fetchMenu = async () => {
+    setResName(resMenuData[0]?.data?.cards[0]?.card?.card?.text);
     /*
     try {
       const data = await fetch(MENU_API_URL);
@@ -26,10 +28,15 @@ const useRestaurantMenu = (resId) => {
       console.log(error);
     }
     */
-    setResInfo(resMenuData[0]?.card?.info);
+   const categories = resMenuData[0]?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((item)=>{
+    return item?.card?.card?.["@type"].includes("ItemCategory");
+   })
+    setResInfo(categories);
   };
+  // console.log(resInfo);
+  
 
-  return resInfo;
+  return {resInfo,resName};
 };
 
 export default useRestaurantMenu;
