@@ -1,4 +1,4 @@
-## Clone of Swiggy
+## Clone of Swiggy. Build in React.js
 # Parcel + React
 
 A minimal, modern starter README for a React app bundled with **Parcel**. This README provides an overview, setup instructions, development and production commands, and tips for common tasks.
