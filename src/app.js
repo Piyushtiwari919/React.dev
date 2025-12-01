@@ -10,7 +10,7 @@ import Error from "./components/Error.js";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu.js";
 import UserContext from "../src/utils/UserContext.js";
-// import Grocery from "./components/Grocery.js";
+import Grocery from "./components/Grocery.js";
 
 const Grocery = lazy(() => import("./components/Grocery.js"));
 
@@ -72,23 +72,7 @@ const appRouter = createBrowserRouter([
   },
 ]);
 
-/*
-const appRouter = createBrowserRouter([
-  {
-    path: "/",
-    element: <AppLayout />,
-    errorElement:<Error/>
-  },
-  {
-    path: "/about",
-    element: <About />,
-  },
-  {
-    path: "/contact",
-    element: <Contact />,
-  },
-]);
-*/
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
